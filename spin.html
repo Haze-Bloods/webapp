@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Easy Spin</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; background: #111; color: white; }
+    #wheel {
+      width: 300px;
+      height: 300px;
+      margin: 50px auto;
+      border-radius: 50%;
+      border: 10px solid #fff;
+      background: conic-gradient(
+        #4CAF50 0% 33%, 
+        #FFC107 33% 66%, 
+        #F44336 66% 100%
+      );
+      transition: transform 4s ease-out;
+    }
+    #btn {
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎰 Крути рулетку!</h1>
+  <div id="wheel"></div>
+  <br />
+  <button id="btn">Крутить</button>
+
+  <script>
+    const wheel = document.getElementById('wheel');
+    const btn = document.getElementById('btn');
+
+    btn.addEventListener('click', () => {
+      const spin = Math.floor(5000 + Math.random() * 5000);
+      wheel.style.transform = `rotate(${spin}deg)`;
+
+      setTimeout(() => {
+        alert("Поздравляем! Приз будет начислен.");
+        if (window.Telegram.WebApp) {
+          Telegram.WebApp.close();
+        }
+      }, 4500);
+    });
+
+    if (window.Telegram.WebApp) {
+      Telegram.WebApp.expand();
+    }
+  </script>
+</body>
+</html>
